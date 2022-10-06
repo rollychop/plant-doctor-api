@@ -1,4 +1,5 @@
 import torch
+import uvicorn
 from fastapi import FastAPI, UploadFile, File
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -61,3 +62,7 @@ async def get_plant(id_: int):
         return match[0]
     else:
         return None
+
+
+if __name__ == '__main__':
+    uvicorn.run(app)

@@ -2,3 +2,4 @@ torch~=1.12.1
 fastapi~=0.85.0
 Pillow~=9.2.0
 torchvision~=0.13.1
+uvicorn~=0.18.3
