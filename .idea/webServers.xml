@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1634c92f-c074-4825-b7f6-3b32d8ebc1bd" name="local" url="http://localhost">
+        <fileTransfer mountedRoot="C:\Users\ROHIT KUMAR\code\py" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
