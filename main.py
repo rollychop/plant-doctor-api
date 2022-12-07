@@ -8,7 +8,7 @@ import constant
 import plant
 import resnet9
 import util
-from plant import plants
+from plant import PlantModel
 from resnet9 import ResNet9
 
 app = FastAPI()
@@ -31,7 +31,7 @@ async def home():
 @app.post("/predict")
 async def predict(
         file: UploadFile = File(...)
-) -> str:
+) -> PlantModel:
     bb = await file.read()
     img = util.byteToPIL(bb)
     tt = util.pilToTensorCompose()  # transformation
@@ -44,7 +44,7 @@ async def predict(
 
 @app.get('/plant-list')
 async def get_plant_list() -> JSONResponse:
-    json_compatible_item_data = jsonable_encoder(plants)
+    json_compatible_item_data = jsonable_encoder(plant.plants)
     return JSONResponse(content=json_compatible_item_data)
 
 
@@ -57,7 +57,7 @@ async def get_plant_detail():
 
 @app.get("/plant")
 async def get_plant(id_: int):
-    match = list(filter(lambda x: x.id == id_, plants))
+    match = list(filter(lambda x: x.id == id_, plant.plants))
     if len(match) >= 1:
         return match[0]
     else:

@@ -1,5 +1,7 @@
-import torch.nn as nn
 import torch
+import torch.nn as nn
+
+import constant
 
 
 # convolution block with BatchNormalization
@@ -21,11 +23,14 @@ def predict_image(img, MODEL):
 
     # Get predictions from model
     yb = MODEL(xb)
-    print(yb)
     # Pick index with the highest probability
     _, preds = torch.max(yb, dim=1)
     # Retrieve the class label
-    print(preds)
+
+    ac = nn.Softmax(dim=0)(torch.as_tensor(yb[0], dtype=torch.float32))
+    top5 = torch.sort(yb, descending=True)[1][:5][0].tolist()[:5]
+    for i in top5:
+        print(round(ac[i].item(), 2) * 100, "%", constant.class_list[i])
     return preds[0].item()
 
 
